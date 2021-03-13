@@ -1,15 +1,19 @@
-# TALLER DE ARQUITECTURAS DE SERVIDORES DE APLICACIONES, META PROTOCOLOS DE OBJETOS, PATRÓN IOC, REFLEXIÓN
+# TALLER DE DE MODULARIZACIÓN CON VIRTUALIZACIÓN E INTRODUCCIÓN A DOCKER Y A AWS
 
-Para este taller los estudiantes deberán construir un servidor 
-Web (tipo Apache) en Java. El servidor debe ser capaz de entregar 
-páginas html e imágenes tipo PNG. Igualmente el servidor debe proveer 
-un framework IoC para la construcción de aplicaciones web a partir de POJOS. 
-Usando el servidor se debe construir una aplicación Web de ejemplo y 
-desplegarlo en Heroku. El servidor debe atender múltiples solicitudes no concurrentes.
+El taller consiste en crear una aplicación web pequeña usando el micro-framework 
+de Spark java (http://sparkjava.com/). Una vez tengamos esta aplicación procederemos 
+a construir un container para docker para la aplicación y los desplegaremos y configuraremos 
+en nuestra máquina local. Luego, cerremos un repositorio en DockerHub y subiremos 
+la imagen al repositorio. Finalmente, crearemos una máquina virtual de en AWS, 
+instalaremos Docker , y desplegaremos el contenedor que acabamos de crear.
 
-Para este taller desarrolle un prototipo mínimo que demuestre capcidades 
-reflexivas de JAVA y permita por lo menos cargar un bean (POJO) y derivar 
-una aplicación Web a partir de él. Debe entregar su trabajo al final del laboratorio.
+## Explicación y Resumen del Proyecto
+
+Se realizará una aplicación, la cual será desplegada en AWS utilizando EC2 y Docker. El sistema de Docker tendrá cuadro micro contenedores, los cuales van a ser la aplicación web APP-LB-RoundRobin, 3 servicios REST LogService y un servicio MongoDB.
+La aplicación tiene un campo y un botón , y cada vez que este se usa, se envía un mensaje al servicio REST, este servicio regresa un objeto JSON con las ultimas 10 cadenas almacenadas en la base de datos de MongoDB.
+
+Imagen de la maquina virtual linux creada con AWS, con Docker instalado y con la primera imagen creada.
+![](img/img1.jpg)
 
 ## Empezando e Instalando
 
@@ -19,27 +23,28 @@ Entramos a la carpeta donde queremos guardar nuestro repositorio, en este caso D
 
 Clonamos el repositorio en la carpeta
 
-`$ git clone https://github.com/Nikolas2001-13/AREP-Taller4`
+`$ git clone https://github.com/Nikolas2001-13/AREP-Taller5`
 
 Nos dirigimos a la carpeta que contiene el proyecto
 
-`$ cd AREP-Taller4`
+`$ cd AREP-Taller5`
 
 Compilamos con maven
 
 `$ mvn package`
 
-Y por último corremos el programa
+Para ejecutar la aplicación
 
-`$ mvn exec:java -Dexec.mainClass="edu.escuelaing.arep.app.DemoServer"`
+`$ docker-compose up -d `
 
-### Prerrequisitos
+## Prerrequisitos
 Java SE Development Kit 8 -Java SE Runtime Environment 8 -Apache Maven.
-Tener conocimiento sobre Maven, HEROKU, GIT, Spark y GITHUB. 
+Tener conocimiento sobre Maven, GIT, Spark y GITHUB. 
+Tener instalado Docker es su máquina.
 
-## Despliegue en Heroku
+## Instancia en AWS
 
-[![Heroku App](http://heroku-shields.herokuapp.com/shrouded-sea-44498)](https://shrouded-sea-44498.herokuapp.com/ )
+[Amazon EC2](http://ec2-3-88-203-172.compute-1.amazonaws.com:7600/)
 
 ## Integración Continua CircleCi
 
