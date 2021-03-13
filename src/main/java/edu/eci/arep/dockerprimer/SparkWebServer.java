@@ -21,7 +21,11 @@ public class SparkWebServer {
 		});
 	}
 
-	static int getPort() {
+    /**
+     * Obtiene el puerto
+     * @return int
+     */
+	public static int getPort() {
 		if (System.getenv("PORT") != null) {
 			return Integer.parseInt(System.getenv("PORT"));
 		}
